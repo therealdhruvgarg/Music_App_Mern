@@ -1,21 +1,19 @@
-import React from "react";
-import "../App.css"
+import React, { useState } from 'react';
+import '../App.css'; // Import your custom styles for the item
 
-export const Item = ({ fn, item, isActive }) => {
+export const Item = ({ fn, item }) => {
+  const [playerFlag, setPlayerFlag] = useState(false);
+
   const showPlayer = () => {
     fn(true, item);
   };
 
   return (
-    <div className={`row item-container ${isActive ? 'active-item' : ''}`}>
-      <div className="col-4 item-image">
-        <img src={item.artworkUrl100} alt="Album Artwork" />
-      </div>
-      <div className="col-4 item-details">
-        <p>{item.artistName}</p>
-        <p>{item.trackName}</p>
-      </div>
-      <div className="col-4 item-play-button">
+    <div className="card">
+      <img src={item.artworkUrl100} className="card-img-top" alt="Album Artwork" />
+      <div className="card-body">
+        <h5 className="card-title">{item.trackName}</h5>
+        <p className="card-text">{item.artistName}</p>
         <button onClick={showPlayer} className="btn btn-primary">
           Play Song
         </button>
