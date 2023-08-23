@@ -29,13 +29,7 @@ export const SearchPage = () => {
 
   return (
     <div className='search-page-container'>
-      <header className='header'>
-        <h1 className='spotify-heading'>
-          <a href='index.html'>Spotify</a>
-        </h1>
-        <button className='btn btn-primary'>Login</button>
-      </header>
-
+    
 
       <Search fn={getName} />
       <Items fn={togglePlayer} allItems={allItems} />

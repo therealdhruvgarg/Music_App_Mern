@@ -185,11 +185,12 @@ h1 {
   border-radius: 4px;
 }
 /* Add these styles to your CSS */
-.item-container {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+.items-container {
+  display: flex;              /* Use flex display */
+  flex-wrap: nowrap;          /* Prevent cards from wrapping to next line */
+  justify-content: flex-start; /* Start cards from the left side */
+  align-items: stretch;       /* Stretch cards to match the height */
+  margin: -5px;               /* Adjust the negative margin to reduce the gap */
 }
 
 .item-image img {
@@ -308,5 +309,59 @@ h1 {
 @media (max-width: 768px) {
   .card {
     width: calc(33.33% - 10px);
+  }
+}
+/* Navbar.css */
+.navbar {
+  padding: 1rem 0;
+  background-color: #000;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1db954;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.form-control {
+  background-color: #212121;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.btn-outline-success {
+  color: #1db954;
+  border-color: #1db954;
+}
+
+.btn-outline-success:hover {
+  background-color: #1db954;
+  border-color: #1db954;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .navbar-collapse {
+    background-color: #000;
   }
 }
