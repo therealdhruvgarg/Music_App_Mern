@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+import {SchemaTypes} from "mongoose";
+import mongoose from "../connection.js";
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
-    'email':{type:mongoose.SchemaType.string,required:true,unique:true},
-    'password':{type:mongoose.SchemaType.string,required:true,minLength:8,maxLength:25},
-    'name':{type:mongoose.SchemaType.string,required:true},
-    'phone':{type:mongoose.SchemaType.string}
+    'email':{type:SchemaTypes.String,required:true,unique:true},
+    'password':{type:SchemaTypes.String,required:true,minLength:8,maxLength:25},
+    'name':{type:SchemaTypes.String,required:true},
+    'phone':{type:SchemaTypes.String}
 });
-export const usermodel = mongoose.model('user',userSchema);
+export const usermodel = mongoose.model('users',userSchema);
 

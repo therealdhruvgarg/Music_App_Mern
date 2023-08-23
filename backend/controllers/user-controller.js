@@ -1,3 +1,4 @@
+import { usermodel } from "../db/schema/schema.js";
 export const userController = {
     login(request,respose){
         const userInfo = request.body;
@@ -10,8 +11,20 @@ export const userController = {
         // console.log('request body is',body);
         respose.json({message:'Login'})
     },
-    register(request,respose){
-        respose.json({message:'Register'})
+    async register(request,respose){
+        const userInfo =request.body;
+        try{
+        const doc = await usermodel.create(userInfo);
+        if(doc && doc._id){
+        respose.json({message:'Register Successful'});
+        }else{
+            respose.json({message:'Unsuccessful'});
+        }
+       
+        } 
+        catch(err){
+            console.log('Register Error ', err)};
+            respose.json({message:'Unsuccessful'});
     },
     profile(request,respose){
         const userName  = request.params.username;

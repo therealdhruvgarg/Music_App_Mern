@@ -3,7 +3,7 @@ import userRoutes from './routes/user-routes.js'
 const app = express();
 app.use(express.json());
 app.use('/',userRoutes);
-    app.use((request,response,next)=>{
+app.use((request,response,next)=>{
         response.json({message:'INVALID URL'})
     })
 const server = app.listen(1234,(err)=>{

@@ -6,3 +6,4 @@ promise.then(data=>{
 }).catch(err=>{
     console.log('Error during DB Connection',err);
 })
+export default mongoose;
