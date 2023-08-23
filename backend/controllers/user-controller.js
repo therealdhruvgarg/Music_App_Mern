@@ -1,4 +1,5 @@
 import { usermodel } from "../db/schema/schema.js";
+import { hashing } from "../utils/encrypt.js";
 export const userController = {
     login(request,respose){
         const userInfo = request.body;
@@ -13,6 +14,7 @@ export const userController = {
     },
     async register(request,respose){
         const userInfo =request.body;
+        userInfo.password = hashing.passwordHash(userInfo.password)
         try{
         const doc = await usermodel.create(userInfo);
         if(doc && doc._id){
