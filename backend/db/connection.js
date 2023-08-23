@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 const url = 'mongodb+srv://admin:admin123@cluster0.1ldweh5.mongodb.net/userdb?retryWrites=true&w=majority';
 const promise = mongoose.connect(url);
 promise.then(data=>{
