@@ -3,8 +3,8 @@ export const userController = {
     login(request,respose){
         const userInfo = request.body;
        // eslint-disable-next-line no-cond-assign
-       if(userInfo.userid = userInfo.password){
-        respose.json({message:'welcome'+ userInfo.userid});
+       if(userInfo.userid === userInfo.password){
+        respose.json({message:'welcome '+ userInfo.userid});
        }else{
         respose.json({message:'INVALID'})
        }
