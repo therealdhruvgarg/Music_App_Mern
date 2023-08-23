@@ -11,7 +11,7 @@ export const SearchPage = () => {
   const [item, setItem] = useState(null);
 
   const loadItems = async () => {
-    setItems(await getItems('latest Items'));
+    setItems(await getItems('latest Items',5));
   };
 
   useEffect(() => {
