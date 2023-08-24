@@ -15,7 +15,7 @@ export const Login = () => {
       'password':passRef.current.value,
     }
     try{
-    const response = await apiClient.post('http://localhost:1234/registration',userInfo)
+    const response = await apiClient.post('http://localhost:1234/login',userInfo)
     setMessage(response.data.message);
     }catch(err){
       setMessage('Login fails.')

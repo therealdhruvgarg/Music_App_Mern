@@ -365,3 +365,30 @@ h1 {
     background-color: #000;
   }
 }
+/* Navbar Styles */
+.spotify-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #191414;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.navbar-logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1db954;
+  text-decoration: none;
+}
+
+.navbar-links a {
+  margin-right: 1.5rem;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-links a:hover {
+  color: #1db954;
+}
