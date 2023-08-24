@@ -5,7 +5,7 @@ export const Search = ({ fn }) => {
 
   return (
     <div className="search-container">
-      <label htmlFor="searchInput">Artist Name</label>
+      <label htmlFor="searchInput">🎧Latest Songs</label>
       <div className="search-input-container">
         <input
           ref={Name}
@@ -16,7 +16,7 @@ export const Search = ({ fn }) => {
         />
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-info"
           onClick={() => {
             fn(Name.current.value);
           }}

@@ -25,7 +25,7 @@ export const Login = () => {
   return (
     <Container>
       <p>{message}</p>
-       <TextField inputRef={emailRef}id="outlined-basic" label="Email" variant="outlined" />
+       <TextField inputRef={emailRef} label="Email" variant="outlined" />
        <TextField
        inputRef={passRef}
           id="outlined-password-input"

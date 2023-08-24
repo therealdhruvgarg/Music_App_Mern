@@ -1,26 +1,26 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { SearchPage } from "./pages/SearchPage";
 import Navbar from "./components/navbar";
-import UserPage from "./user/components/userpage";
 import { Register } from "./user/pages/Signup";
 import Login from "./user/pages/Login";
+import { Search } from "./components/Search";
 
 function App() {
   return (
     <>
-      <Router>
-        <div className="container">
-          <Navbar />
-          <Routes>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-          </Routes>{" "}
-          {/* Add more routes as needed */}
-          <SearchPage />
-        </div>
-      </Router>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>{" "}
+        {/* Add more routes as needed */}
+        {/* <SearchPage /> */}
+      </div>
     </>
   );
 }
