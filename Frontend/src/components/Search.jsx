@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "../App.css"
+import "./Search.css"
 export const Search = ({ fn }) => {
   const Name = useRef();
 
@@ -16,7 +16,7 @@ export const Search = ({ fn }) => {
         />
         <button
           type="button"
-          className="btn btn-info"
+          className="btn-success"
           onClick={() => {
             fn(Name.current.value);
           }}

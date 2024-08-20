@@ -1,0 +1,53 @@
+.form-control {
+    background-color: #ffffff;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+  }
+  
+  .btn-outline-success {
+    color: #1db954;
+    border-color: #1db954;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #1db954;
+    border-color: #1db954;
+    color: white;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .navbar-collapse {
+      background-color: #000;
+    }
+  }
+  /* Navbar Styles */
+  .spotify-navbar {
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+  }
+  
+  .navbar-logo a {
+    
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .navbar-links a {
+    margin-right: 1.5rem;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-links a:hover {
+    color: #1db9ac;
+  }
+  

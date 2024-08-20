@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../App.css';
+import './Item.css'
 import './Player';
 
 export const Item = ({ fn, item }) => {

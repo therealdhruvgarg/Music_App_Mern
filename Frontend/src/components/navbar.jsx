@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link,NavLink } from 'react-router-dom';
-import '../App.css'; // Create a CSS file for your Navbar styles
+import './navbar.css'; // Create a CSS file for your Navbar styles
 import Login from '../user/pages/Login';
 import { Register } from '../user/pages/Signup';
-import { Search } from './Search';
+
 
 const Navbar = () => {
   return (

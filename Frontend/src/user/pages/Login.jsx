@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useRef } from 'react';
 import { apiClient } from '../../Services/api-client';
+import './Login.css'
 export const Login = () => {
   const [message,setMessage]=useState('');
   const emailRef = useRef();
@@ -25,15 +26,15 @@ export const Login = () => {
   return (
     <Container>
       <p>{message}</p>
-       <TextField inputRef={emailRef} label="Email" variant="outlined" />
+       <TextField inputRef={emailRef} label="Email" variant="outlined" className='login-con' />
        <TextField
        inputRef={passRef}
           id="outlined-password-input"
           label="Password"
           type="password"
-          autoComplete="current-password"
+          autoComplete="current-password"className='login-con'
         />
-        <Button onClick={doLogin}variant="contained">Login</Button>
+        <Button onClick={doLogin}variant="contained" className='btn-success'>Login</Button>
       </Container>
   )
 }

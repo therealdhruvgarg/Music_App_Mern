@@ -3,7 +3,7 @@ import { Search } from '../components/Search.jsx';
 import { Items } from '../components/Items.jsx';
 import { getItems } from '../Services/api-client.js';
 import { Player } from '../components/Player.jsx';
-import '../App.css'; // Import your custom styles for this page
+import './SearchPage.css' // Import your custom styles for this page
 
 export const SearchPage = () => {
   const [allItems, setItems] = useState([]);
@@ -11,7 +11,7 @@ export const SearchPage = () => {
   const [item, setItem] = useState(null);
 
   const loadItems = async () => {
-    setItems(await getItems('latest Items',5));
+    setItems(await getItems('latest Items',10));
   };
 
   useEffect(() => {

@@ -1,0 +1,36 @@
+.search-container {
+    font-size: xx-large;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .form-control {
+    padding: 10px;
+    border: none;
+    background-color: #ffffff;
+    color: #fff;
+    border-radius: 4px;     
+  }
+  
+  .btn-success {
+    background-color: #2b75c0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-success:hover {
+    background-color: #7514e5;
+  }
