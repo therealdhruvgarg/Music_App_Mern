@@ -7,12 +7,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ChevronUp, ChevronDown, ThumbsDown, Play, Share2, Axis3DIcon } from "lucide-react"
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Appbar } from '../components/Appbar'
+
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import { YT_REGEX } from '../lib/utils'
 //@ts-ignore
 import YouTubePlayer from 'youtube-player';
+import { Appbar } from './Appbar'
 
 interface Video {
     "id": string,
@@ -182,7 +183,7 @@ export default function StreamView({
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
-        <Appbar />
+       <Appbar/>
         <div className='flex justify-center'>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-5 w-screen max-w-screen-xl pt-8">
                 <div className='col-span-3'>
