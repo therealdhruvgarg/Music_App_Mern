@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Music, Users, Radio, Headphones } from "lucide-react"
+import { Users, Radio, Headphones } from "lucide-react"
 import Link from "next/link"
 import { AppBar } from "./components/AppBar"
+import { Redirect } from "./components/Redirect"
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
      
         <AppBar/>
-     
+      <Redirect/>
       <main className="flex-1 py-12 px-4">
         <div className="container mx-auto max-w-3xl text-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
