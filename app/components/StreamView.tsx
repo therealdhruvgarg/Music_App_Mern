@@ -13,7 +13,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import { YT_REGEX } from '../lib/utils'
 //@ts-ignore
 import YouTubePlayer from 'youtube-player';
-import { Appbar } from './Appbar'
+import { Appbar } from './Appbar.tsx'
 
 interface Video {
     "id": string,

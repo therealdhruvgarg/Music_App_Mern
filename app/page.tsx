@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Users, Radio, Headphones } from "lucide-react"
 
 import useRedirect from "./hooks/useRedirect"
-import { Appbar } from "./components/Appbar";
+import { Appbar } from "./components/Appbar.tsx";
 
 export default function LandingPage() {
   useRedirect();
