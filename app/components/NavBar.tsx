@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 //@ts-ignore
 import { Music } from "lucide-react"
 
-export function Appbar() {
+export function NavBar() {
     const session = useSession();
 
     return <div className="flex justify-between px-20 pt-4">
@@ -19,3 +19,4 @@ export function Appbar() {
         </div>
     </div>
 }
+

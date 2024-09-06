@@ -13,7 +13,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import { YT_REGEX } from '../lib/utils'
 //@ts-ignore
 import YouTubePlayer from 'youtube-player';
-import { Appbar } from './Appbar'
+import { NavBar } from './NavBar'
 
 
 interface Video {
@@ -184,7 +184,7 @@ export default function StreamView({
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
-       <Appbar/>
+       <NavBar/>
         <div className='flex justify-center'>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-5 w-screen max-w-screen-xl pt-8">
                 <div className='col-span-3'>
