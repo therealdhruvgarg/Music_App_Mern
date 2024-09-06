@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/app/components/ui/button"
+import { Input } from "@/app/components/ui/input"
 import { Users, Radio, Headphones } from "lucide-react"
 import Link from "next/link"
 import { AppBar } from "./components/AppBar"
