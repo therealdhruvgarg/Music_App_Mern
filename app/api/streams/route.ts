@@ -103,7 +103,8 @@ export async function POST(req: NextRequest) {
     } catch(e) {
         console.error('Error while adding a stream:', e);
         return NextResponse.json({
-            message: "Error while adding a stream"
+            message: "Error while adding a stream",
+            error: (e as Error).message || e
         }, {
             status: 500
         });
