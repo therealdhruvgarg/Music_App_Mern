@@ -114,8 +114,11 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        const thumbnails = res.thumbnail.thumbnails;
-        thumbnails.sort((a: {width: number}, b: {width: number}) => a.width < b.width ? -1 : 1);
+        const thumbnails = res.thumbnail?.thumbnails || [];
+        const fallbackImg = "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg";
+        
+        // Sort thumbnails if they exist
+        thumbnails.sort((a: { width: number }, b: { width: number }) => a.width < b.width ? -1 : 1);
 
         const existingActiveStreams = await prismaClient.stream.count({
             where: {
@@ -140,8 +143,8 @@ export async function POST(req: NextRequest) {
                 extractedId,
                 type: "Youtube",
                 title: res.title ?? "Can't find video",
-                smallImg: (thumbnails.length > 1 ? thumbnails[thumbnails.length - 2].url : thumbnails[thumbnails.length - 1].url) ?? "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg",
-                bigImg: thumbnails[thumbnails.length - 1].url ?? "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg"
+                smallImg: (thumbnails.length > 1 ? thumbnails[thumbnails.length - 2].url : thumbnails[thumbnails.length - 1]?.url) ?? fallbackImg,
+                bigImg: thumbnails[thumbnails.length - 1]?.url ?? fallbackImg
             }
         });
 
@@ -159,6 +162,7 @@ export async function POST(req: NextRequest) {
         });
     }
 }
+
 
 export async function GET(req: NextRequest) {
     const creatorId = req.nextUrl.searchParams.get("creatorId");
