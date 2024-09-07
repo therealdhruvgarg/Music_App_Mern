@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth";
 
 const CreateStreamSchema = z.object({
     creatorId: z.string(),
-    url: z.string()
+    url: z.string().min(1, "YouTube link cannot be empty")
 });
 
 const MAX_QUEUE_LEN = 20;
@@ -32,14 +32,6 @@ export async function POST(req: NextRequest) {
 
         const data = CreateStreamSchema.parse(await req.json());
         
-        if (!data.url.trim()) {
-            return NextResponse.json({
-                message: "YouTube link cannot be empty"
-            }, {
-                status: 400
-            });
-        }
-
         const isYt = data.url.match(YT_REGEX);
         if (!isYt) {
             return NextResponse.json({
@@ -51,12 +43,19 @@ export async function POST(req: NextRequest) {
 
         const extractedId = data.url.split("?v=")[1];
         
-        // Log API Response
-        const res = await youtubesearchapi.GetVideoDetails(extractedId);
-        console.log('API Response:', res);
+        let res;
+        try {
+            res = await youtubesearchapi.GetVideoDetails(extractedId);
+        } catch (apiError) {
+            console.error('Error fetching video details from YouTube API:', apiError);
+            return NextResponse.json({
+                message: "Error fetching video details"
+            }, {
+                status: 500
+            });
+        }
 
-        // Check if the API response contains the expected data
-        if (!res || !res.thumbnail || !res.thumbnail.thumbnails) {
+        if (!res?.thumbnail?.thumbnails) {
             return NextResponse.json({
                 message: "Invalid API response: Missing thumbnails"
             }, {
@@ -65,7 +64,7 @@ export async function POST(req: NextRequest) {
         }
 
         const thumbnails = res.thumbnail.thumbnails;
-        thumbnails.sort((a: {width: number}, b: {width: number}) => a.width < b.width ? -1 : 1);
+        thumbnails.sort((a: {width: number}, b: {width: number}) => a.width - b.width);
 
         const existingActiveStreams = await prismaClient.stream.count({
             where: {
@@ -100,7 +99,7 @@ export async function POST(req: NextRequest) {
             hasUpvoted: false,
             upvotes: 0
         });
-    } catch(e) {
+    } catch (e) {
         console.error('Error while adding a stream:', e);
         return NextResponse.json({
             message: "Error while adding a stream",
@@ -125,15 +124,15 @@ export async function GET(req: NextRequest) {
             message: "Unauthenticated"
         }, {
             status: 403
-        })
+        });
     }
 
     if (!creatorId) {
         return NextResponse.json({
-            message: "Error"
+            message: "Creator ID is required"
         }, {
             status: 411
-        })
+        });
     }
 
     const [streams, activeStream] = await Promise.all([
@@ -171,7 +170,7 @@ export async function GET(req: NextRequest) {
         streams: streams.map(({_count, ...rest}) => ({
             ...rest,
             upvotes: _count.upvotes,
-            haveUpvoted: rest.upvotes.length ? true : false
+            haveUpvoted: rest.upvotes.length > 0
         })),
         activeStream,
         creatorId,
