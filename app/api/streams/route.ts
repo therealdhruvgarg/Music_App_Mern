@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
         }
 
         const thumbnails = res.thumbnail?.thumbnails || [];
-        const fallbackImg = "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg";
+        const fallbackImg = "https://orig00.deviantart.net/ba42/f/2011/129/7/1/brook_yohoho_by_vastile-d3fzwuk.jpg";
         
         // Sort thumbnails if they exist
         thumbnails.sort((a: { width: number }, b: { width: number }) => a.width < b.width ? -1 : 1);
