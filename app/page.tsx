@@ -4,87 +4,85 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 //@ts-ignore
 import { Users, Radio, Headphones } from "lucide-react"
-import { Appbar } from "./components/Appbar"
+
 import useRedirect from "./hooks/useRedirect"
+
+import { Appbar } from "./components/Appbar";
+
+
+
 
 export default function LandingPage() {
   useRedirect();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
-      <Appbar />
-      <main className="flex-1 py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white">
-                Let Your Fans Choose the Beat
-              </h1>
-              <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl">
-                Empower your audience to curate your music stream. Connect with fans like never before.
-              </p>
-            </div>
-            <div className="space-x-4">
-              <Button className="bg-purple-600 text-white hover:bg-purple-700">Get Started</Button>
-              <Button variant="outline" className="text-purple-400 border-purple-400 hover:bg-purple-400 hover:text-gray-900">Learn More</Button>
-            </div>
+    <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
+<Appbar/>
+      <main className="flex-1 py-12 px-4">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+            Let Your Fans Choose Your Streams Soundtrack
+          </h1>
+          <p className="text-xl mb-8 text-gray-300">
+            Yohoho Music revolutionizes music streaming by putting the power in your fans hands.
+          </p>
+          <Button className="bg-purple-600 text-white hover:bg-purple-700 transition-colors" size="lg">
+            Get Started
+          </Button>
+        </div>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="bg-gray-800 rounded-lg p-6 text-center shadow-lg hover:shadow-purple-500/20 transition-shadow">
+            <Users className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
+            <h3 className="text-xl font-bold mb-2 text-purple-400">Engage Fans</h3>
+            <p className="text-gray-300">Boost interaction and keep your audience coming back.</p>
+          </div>
+          <div className="bg-gray-800 rounded-lg p-6 text-center shadow-lg hover:shadow-purple-500/20 transition-shadow">
+            <Radio className="h-12 w-12 mx-auto mb-4 text-green-400" />
+            <h3 className="text-xl font-bold mb-2 text-purple-400">Unique Streams</h3>
+            <p className="text-gray-300">Every stream becomes a one-of-a-kind experience.</p>
+          </div>
+          <div className="bg-gray-800 rounded-lg p-6 text-center shadow-lg hover:shadow-purple-500/20 transition-shadow">
+            <Headphones className="h-12 w-12 mx-auto mb-4 text-blue-400" />
+            <h3 className="text-xl font-bold mb-2 text-purple-400">Discover Music</h3>
+            <p className="text-gray-300">Expand your musical horizons with fan curation.</p>
+          </div>
+        </div>
+        <div className="mt-20 max-w-md mx-auto">
+          <div className="bg-gray-800 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-bold mb-4 text-center text-purple-400">Sign Up for Early Access</h2>
+            <p className="text-gray-300 mb-6 text-center">Be among the first to revolutionize your streams with Yohoho Music.</p>
+            <form className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  Email Address
+                </label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className="w-full bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500"
+                  required
+                />
+              </div>
+              <Button className="w-full bg-purple-600 text-white hover:bg-purple-700 transition-colors" type="submit">
+                Join the Waitlist
+              </Button>
+            </form>
           </div>
         </div>
       </main>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-800 bg-opacity-50">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-center mb-8 text-white">Key Features</h2>
-          <div className="grid gap-8 sm:grid-cols-3">
-            <div className="flex flex-col items-center space-y-3 text-center">
-              <Users className="h-12 w-12 text-yellow-400" />
-              <h3 className="text-xl font-bold text-white">Fan Interaction</h3>
-              <p className="text-gray-400">Let fans choose the music.</p>
-            </div>
-            <div className="flex flex-col items-center space-y-3 text-center">
-              <Radio className="h-12 w-12 text-green-400" />
-              <h3 className="text-xl font-bold text-white">Live Streaming</h3>
-              <p className="text-gray-400">Stream with real-time input.</p>
-            </div>
-            <div className="flex flex-col items-center space-y-3 text-center">
-              <Headphones className="h-12 w-12 text-blue-400" />
-              <h3 className="text-xl font-bold text-white">High-Quality Audio</h3>
-              <p className="text-gray-400">Crystal clear sound quality.</p>
-            </div>
+      <footer className="mt-auto py-6 px-4 border-t border-gray-800">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
+          <p className="text-sm mb-4 sm:mb-0 text-gray-400">© 2023 Yohoho Music. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link className="text-sm text-gray-400 hover:text-purple-400 transition-colors" href="#">
+              Terms
+            </Link>
+            <Link className="text-sm text-gray-400 hover:text-purple-400 transition-colors" href="#">
+              Privacy
+            </Link>
           </div>
         </div>
-      </section>
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">Ready to Transform Your Streams?</h2>
-              <p className="mx-auto max-w-[600px] text-gray-400 md:text-xl">
-                Join MusicStreamChoice today and create unforgettable experiences.
-              </p>
-            </div>
-            <div className="w-full max-w-sm space-y-2">
-              <form className="flex space-x-2">
-                <Input 
-                  className="max-w-lg flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-500" 
-                  placeholder="Enter your email" 
-                  type="email" 
-                />
-                <Button type="submit" className="bg-purple-600 text-white hover:bg-purple-700">Sign Up</Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-gray-700">
-        <p className="text-xs text-gray-400">© 2023 MusicStreamChoice. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs text-gray-400 hover:text-purple-400 transition-colors" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs text-gray-400 hover:text-purple-400 transition-colors" href="#">
-            Privacy
-          </Link>
-        </nav>
       </footer>
     </div>
   )
