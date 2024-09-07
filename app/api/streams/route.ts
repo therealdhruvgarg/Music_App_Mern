@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
 
         const extractedId = data.url.split("?v=")[1];
         const res = await youtubesearchapi.GetVideoDetails(extractedId);
+        console.log(res);
 
         // Check if the user is not the creator
         if (user.id !== data.creatorId) {
