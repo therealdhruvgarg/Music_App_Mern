@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        const isYt = data.url.match(YT_REGEX);
+        const isYt = data.url.match(YT_REGEX)
         if (!isYt) {
             return NextResponse.json({
                 message: "Invalid YouTube URL format"
@@ -50,18 +50,67 @@ export async function POST(req: NextRequest) {
         }
 
         const extractedId = data.url.split("?v=")[1];
-        
-        // Log API Response
         const res = await youtubesearchapi.GetVideoDetails(extractedId);
-        console.log('API Response:', res);
 
-        // Check if the API response contains the expected data
-        if (!res || !res.thumbnail || !res.thumbnail.thumbnails) {
-            return NextResponse.json({
-                message: "Invalid API response: Missing thumbnails"
-            }, {
-                status: 500
+        // Check if the user is not the creator
+        if (user.id !== data.creatorId) {
+            const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+            const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000);
+
+            const userRecentStreams = await prismaClient.stream.count({
+                where: {
+                    userId: data.creatorId,
+                    addedBy: user.id,
+                    createAt: {
+                        gte: tenMinutesAgo
+                    }
+                }
             });
+
+            // Check for duplicate song in the last 10 minutes
+            const duplicateSong = await prismaClient.stream.findFirst({
+                where: {
+                    userId: data.creatorId,
+                    extractedId: extractedId,
+                    createAt: {
+                        gte: tenMinutesAgo
+                    }
+                }
+            });
+            if (duplicateSong) {
+                return NextResponse.json({
+                    message: "This song was already added in the last 10 minutes"
+                }, {
+                    status: 429
+                });
+            }
+
+            // Rate limiting checks for non-creator users
+            const streamsLastTwoMinutes = await prismaClient.stream.count({
+                where: {
+                    userId: data.creatorId,
+                    addedBy: user.id,
+                    createAt: {
+                        gte: twoMinutesAgo
+                    }
+                }
+            });
+
+            if (streamsLastTwoMinutes >= 2) {
+                return NextResponse.json({
+                    message: "Rate limit exceeded: You can only add 2 songs per 2 minutes"
+                }, {
+                    status: 429
+                });
+            }
+
+            if (userRecentStreams >= 5) {
+                return NextResponse.json({
+                    message: "Rate limit exceeded: You can only add 5 songs per 10 minutes"
+                }, {
+                    status: 429
+                });
+            }
         }
 
         const thumbnails = res.thumbnail.thumbnails;
@@ -101,10 +150,9 @@ export async function POST(req: NextRequest) {
             upvotes: 0
         });
     } catch(e) {
-        console.error('Error while adding a stream:', e);
+        console.error(e);
         return NextResponse.json({
-            message: "Error while adding a stream",
-            error: (e as Error).message || e
+            message: "Error while adding a stream"
         }, {
             status: 500
         });
